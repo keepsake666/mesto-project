@@ -1,0 +1,24 @@
+.form__text {
+  display: block;
+  padding: 13px 0;
+  font-family: inter, Arial, Helvetica, sans-serif;
+  width: 358px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  background-color: white;
+  color: #000000;
+  margin-bottom: 16px;
+}
+
+.form__text:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 640px) {
+  .form__text {
+    width: 238px;
+  }
+}

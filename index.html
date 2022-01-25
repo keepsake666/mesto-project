@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="pages/index.css">
+  <title>Место</title>
+</head>
+
+<body class="body">
+  <div class="page">
+    <header class="header">
+      <div class="header__logo"></div>
+    </header>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__container">
+          <div class="profile__avatar"></div>
+          <div class="profile__info">
+            <div class="profile__redact">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button type="button" aria-label="редактировать" class="button profile__edit-button"></button>
+            </div>
+            <p class="profile__text">Исследователь океана</p>
+          </div>
+        </div>
+        <button type="button" class="button profile__add-button"></button>
+      </section>
+      <section class="cards">
+        <ul class="card cards__card">
+          <li class="card__item">
+            <img src="images/cards/kirill-pershin-1088404-unsplash-2.png" alt="Карачаевск" class="card__image">
+            <div class="card__block">
+              <h3 class="card__name">Карачаевск</h3>
+              <button type="button" class="card__like"></button>
+            </div>
+          </li>
+          <li class="card__item">
+            <img src="images/cards/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус" class="card__image">
+            <div class="card__block">
+              <h3 class="card__name">Гора Эльбрус</h3>
+              <button type="button" class="card__like"></button>
+            </div>
+          </li>
+          <li class="card__item">
+            <img src="images/cards/kirill-pershin-1556355-unsplash.png" alt="Домбай" class="card__image">
+            <div class="card__block">
+              <h3 class="card__name">Домбай</h3>
+              <button type="button" class="card__like"></button>
+            </div>
+          </li>
+          <li class="card__item">
+            <img src="images/cards/kirill-pershin-1556355-unsplash.png" alt="Гора Эльбрус" class="card__image">
+            <div class="card__block">
+              <h3 class="card__name">Гора Эльбрус</h3>
+              <button type="button" class="card__like"></button>
+            </div>
+          </li>
+          <li class="card__item">
+            <img src="images/cards/kirill-pershin-1404681-unsplash.png" alt="Домбай" class="card__image">
+            <div class="card__block">
+              <h3 class="card__name">Домбай</h3>
+              <button type="button" class="card__like"></button>
+            </div>
+          </li>
+          <li class="card__item">
+            <img src="images/cards/kirill-pershin-1088404-unsplash-2.png" alt="Карачаево-Черкессия" class="card__image">
+            <div class="card__block">
+              <h3 class="card__name">Карачаево-Черкессия</h3>
+              <button type="button" class="card__like"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <div class="popup">
+        <div class="popup__container">
+          <form name="form-profile-editor" class="popup__form form">
+            <h2 class="form__header">Редактировать профиль</h2>
+            <input type="text" name="firstname" class="form__text form__text_input_name">
+            <input type="text" name="about-me" class="form__text form__text_input_job">
+            <input type="submit" class="form__button" value="Сохранить">
+          </form>
+          <button type="button" class="popup__close"></button>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <p class="footer__author">&copy;2021 Сергей Веселов</p>
+    </footer>
+  </div>
+  <script src="scripts/index.js"> </script>
+</body>
+
+</html>
