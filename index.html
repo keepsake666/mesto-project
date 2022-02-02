@@ -29,49 +29,6 @@
       </section>
       <section class="cards">
         <ul class="card cards__card">
-          <li class="card__item">
-            <img src="images/cards/kirill-pershin-1088404-unsplash-2.png" alt="Карачаевск" class="card__image">
-            <div class="card__block">
-              <h3 class="card__name">Карачаевск</h3>
-              <button type="button" class="card__like"></button>
-            </div>
-            <button type="button" class="card__delete"></button>
-          </li>
-          <li class="card__item">
-            <img src="images/cards/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус" class="card__image">
-            <div class="card__block">
-              <h3 class="card__name">Гора Эльбрус</h3>
-              <button type="button" class="card__like"></button>
-            </div>
-          </li>
-          <li class="card__item">
-            <img src="images/cards/kirill-pershin-1556355-unsplash.png" alt="Домбай" class="card__image">
-            <div class="card__block">
-              <h3 class="card__name">Домбай</h3>
-              <button type="button" class="card__like"></button>
-            </div>
-          </li>
-          <li class="card__item">
-            <img src="images/cards/kirill-pershin-1556355-unsplash.png" alt="Гора Эльбрус" class="card__image">
-            <div class="card__block">
-              <h3 class="card__name">Гора Эльбрус</h3>
-              <button type="button" class="card__like"></button>
-            </div>
-          </li>
-          <li class="card__item">
-            <img src="images/cards/kirill-pershin-1404681-unsplash.png" alt="Домбай" class="card__image">
-            <div class="card__block">
-              <h3 class="card__name">Домбай</h3>
-              <button type="button" class="card__like"></button>
-            </div>
-          </li>
-          <li class="card__item">
-            <img src="images/cards/kirill-pershin-1088404-unsplash-2.png" alt="Карачаево-Черкессия" class="card__image">
-            <div class="card__block">
-              <h3 class="card__name">Карачаево-Черкессия</h3>
-              <button type="button" class="card__like"></button>
-            </div>
-          </li>
         </ul>
       </section>
       <div class="popup popup__edit-profile">
@@ -92,7 +49,7 @@
             <input type="text" name="name-photo" placeholder="Название" class="form__text form__text_input_name-card">
             <input type="text" name="link" placeholder="Ссылка на картинку"
               class="form__text form__text_input_link-card">
-            <input type="submit" class="form__button popup__added-card_button" value="Создать">
+            <input type="button" class="form__button popup__added-card_button" value="Создать">
           </form>
           <button type="button" class="popup__close popup__added-card_close"></button>
         </div>
@@ -102,8 +59,9 @@
       <p class="footer__author">&copy;2021 Сергей Веселов</p>
     </footer>
   </div>
-  <template id="card-template">
+  <template class="card-template">
     <li class="card__item">
+
       <img src="" alt="" class="card__image">
       <div class="card__block">
         <h3 class="card__name"></h3>
