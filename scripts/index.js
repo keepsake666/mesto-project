@@ -6,6 +6,11 @@ const buttonAddCard = document.querySelector('.profile__add-button');
 const buttonCloseCard = document.querySelector('.popup__added-card_close');
 const cards = document.querySelector('.card');
 const popupAddedCardButton = document.querySelector('.popup__added-card_button');
+const popupPhoto = document.querySelector('.popup-photo');
+const popupPhotoClose = document.querySelector('.popup-photo__close');
+const photoLink = document.querySelector('.card__image');
+const photoName = document.querySelector('.card__name');
+const popupPhotoName = document.querySelector('.popup-photo__name');
 
 let nameInput = document.querySelector('.form__text_input_name');
 let jobInput = document.querySelector('.form__text_input_job');
@@ -29,6 +34,8 @@ popupCloseButton.addEventListener('click', closePopup);
 
 function openPopupCard() {
   popupCard.classList.add('popup_opened')
+  nameCard.value = "";
+  linkCard.value = "";
 }
 
 function closePopupCard() {
@@ -36,6 +43,7 @@ function closePopupCard() {
 }
 buttonAddCard.addEventListener('click', openPopupCard);
 buttonCloseCard.addEventListener('click', closePopupCard);
+
 
 // Открытие и закрытие попап
 
@@ -98,8 +106,10 @@ function renderinitialCards(text) {
   newCard.querySelector('.card__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('card__like_active');
   })
-  deleteCard(newCard)
-  cards.prepend(newCard)
+
+  deleteCard(newCard);
+  
+  cards.prepend(newCard);
 }
 
 function addCard() {
@@ -119,3 +129,36 @@ function cardDelete(event) {
 }
 
 //удаление карточки
+
+function openPopupPhoto() {
+  
+  popupPhoto.classList.add('popup_opened');
+  
+}
+
+function target(event) {
+  if (event.target.closest('.card__image')) {
+    openPopupPhoto();
+  }
+}
+  cards.addEventListener('click', target);
+  
+  
+// cards.addEventListener('click', function (event) {
+//   if (event.target.closest('.card__image')) {
+//     openPopupPhoto();
+//     console.log (event.target.closest('.card__image'));
+//   }
+// })
+
+function closePopupPhoto() {
+  popupPhoto.classList.remove('popup_opened')
+}
+
+popupPhotoClose.addEventListener('click', closePopupPhoto);
+
+
+//открытие фото
+
+// const photoLink = document.querySelector('.card__image');
+// const photoName = document.querySelector('.card__name');
