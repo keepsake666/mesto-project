@@ -10,7 +10,8 @@ const popupPhoto = document.querySelector('.popup-photo');
 const popupPhotoClose = document.querySelector('.popup-photo__close');
 const photoLink = document.querySelector('.card__image');
 const photoName = document.querySelector('.card__name');
-const popupPhotoName = document.querySelector('.popup-photo__name');
+let popupPhotoName = document.querySelector('.popup-photo__name');
+let popupPhotoImgLink = document.querySelector('.popup-photo__img');
 
 let nameInput = document.querySelector('.form__text_input_name');
 let jobInput = document.querySelector('.form__text_input_job');
@@ -108,7 +109,7 @@ function renderinitialCards(text) {
   })
 
   deleteCard(newCard);
-  
+
   cards.prepend(newCard);
 }
 
@@ -131,25 +132,21 @@ function cardDelete(event) {
 //удаление карточки
 
 function openPopupPhoto() {
-  
   popupPhoto.classList.add('popup_opened');
-  
+  nameInput.textContent = popupPhotoName.textContent;
 }
 
 function target(event) {
   if (event.target.closest('.card__image')) {
     openPopupPhoto();
   }
+  const target = event.target;
+  popupPhotoName.innerText = target.getAttribute('alt');
+  popupPhotoImgLink.src = target.getAttribute('src')
+  popupPhotoImgLink.alt = target.getAttribute('alt')
 }
-  cards.addEventListener('click', target);
-  
-  
-// cards.addEventListener('click', function (event) {
-//   if (event.target.closest('.card__image')) {
-//     openPopupPhoto();
-//     console.log (event.target.closest('.card__image'));
-//   }
-// })
+
+cards.addEventListener('click', target);
 
 function closePopupPhoto() {
   popupPhoto.classList.remove('popup_opened')
@@ -159,6 +156,3 @@ popupPhotoClose.addEventListener('click', closePopupPhoto);
 
 
 //открытие фото
-
-// const photoLink = document.querySelector('.card__image');
-// const photoName = document.querySelector('.card__name');
