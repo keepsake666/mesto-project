@@ -1,6 +1,6 @@
 .popup__close {
   background-image: url(../../../images/popup/closeIcone.svg);
-  background-size: cover;
+  background-size: contain;
   border: none;
   background-color: transparent;
   width: 32px;
@@ -17,6 +17,7 @@
 
 @media screen and (max-width: 640px) {
   .popup__close {
+    width: 20px;
     max-width: 20px;
     height: 20px;
     right: 0;
