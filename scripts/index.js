@@ -20,6 +20,7 @@ let profileInfo = document.querySelector('.profile__info');
 let profileName = document.querySelector('.profile__name');
 let profileText = document.querySelector('.profile__text');
 let formElement = document.querySelector('.popup_form-profile');
+let popupFormCard = document.querySelector('.popup__form-card');
 
 function openPopup() {
   popup.classList.add('popup_opened')
@@ -113,12 +114,13 @@ function renderinitialCards(text) {
   cards.prepend(newCard);
 }
 
-function addCard() {
+function addCard(evt) {
+  evt.preventDefault();
   renderinitialCards({ name: nameCard.value, link: linkCard.value });
   closePopupCard();
 }
-popupAddedCardButton.addEventListener('click', addCard);
-render()
+
+popupFormCard.addEventListener('submit', addCard);
 
 // добавление новых карточек
 
@@ -155,3 +157,5 @@ popupPhotoClose.addEventListener('click', closePopupPhoto);
 
 
 //открытие фото
+
+render()
