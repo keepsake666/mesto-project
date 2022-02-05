@@ -13,5 +13,5 @@
    3) открытие окна фото по нажатию 
 - добавлена возможность лайкать и удалять карточки 
 
-[Работа выложенна на GitHub Pages] (https://keepsake666.github.io/mesto/index.html)
+[Работа выложенна на GitHub Pages] (https://keepsake666.github.io/mesto-project/index.html)
 
