@@ -133,17 +133,16 @@ function cardDelete(event) {
 
 function openPopupPhoto() {
   popupPhoto.classList.add('popup_opened');
-  nameInput.textContent = popupPhotoName.textContent;
 }
 
 function target(event) {
   if (event.target.closest('.card__image')) {
     openPopupPhoto();
+    const target = event.target;
+    popupPhotoName.innerText = target.getAttribute('alt');
+    popupPhotoImgLink.src = target.getAttribute('src')
+    popupPhotoImgLink.alt = target.getAttribute('alt')
   }
-  const target = event.target;
-  popupPhotoName.innerText = target.getAttribute('alt');
-  popupPhotoImgLink.src = target.getAttribute('src')
-  popupPhotoImgLink.alt = target.getAttribute('alt')
 }
 
 cards.addEventListener('click', target);
