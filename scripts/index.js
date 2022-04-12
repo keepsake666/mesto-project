@@ -25,6 +25,14 @@ const popupFormCard = document.querySelector('.popup__form-card');
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 
+  function closeCurTargetPopup(evt) {
+    if (evt.target === evt.currentTarget) {
+      closePopup(popup)
+      console.log('hi')
+      popup.removeEventListener('click', closeCurTargetPopup);
+    }
+  }
+
   function closeKeyPopup(evt) {
     if (evt.key === "Escape") {
       evt.preventDefault();
@@ -32,7 +40,8 @@ function openPopup(popup) {
       document.removeEventListener('keydown', closeKeyPopup)
     }
   }
-  document.addEventListener('keydown', closeKeyPopup)
+  popup.addEventListener('click', closeCurTargetPopup);
+  document.addEventListener('keydown', closeKeyPopup);
 }
 
 function closePopup(popup) {
