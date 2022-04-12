@@ -22,6 +22,10 @@ const profileText = document.querySelector('.profile__text');
 const profileForm = document.querySelector('.popup_form-profile');
 const popupFormCard = document.querySelector('.popup__form-card');
 
+const editProfile = document.querySelector('.profile__avatar-container');
+const popupProfileAvatar = document.querySelector('.popup-profile');
+const popupProfileClose = document.querySelector('.popup-profile__close')
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 
@@ -67,6 +71,14 @@ buttonCloseCard.addEventListener('click', function () {
 popupPhotoClose.addEventListener('click', function () {
   closePopup(popupPhoto)
 });
+
+editProfile.addEventListener('click', function () {
+  openPopup(popupProfileAvatar);
+});
+popupProfileClose.addEventListener('click', function () {
+  closePopup(popupProfileAvatar)
+});
+
 // Открытие и закрытие попап
 
 function handleProfileFormSubmit(evt) {
