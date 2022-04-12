@@ -24,6 +24,15 @@ const popupFormCard = document.querySelector('.popup__form-card');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+
+  function closeKeyPopup(evt) {
+    if (evt.key === "Escape") {
+      evt.preventDefault();
+      closePopup(popup)
+      document.removeEventListener('keydown', closeKeyPopup)
+    }
+  }
+  document.addEventListener('keydown', closeKeyPopup)
 }
 
 function closePopup(popup) {
