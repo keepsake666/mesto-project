@@ -32,7 +32,6 @@ function openPopup(popup) {
   function closeCurTargetPopup(evt) {
     if (evt.target === evt.currentTarget) {
       closePopup(popup)
-      console.log('hi')
       popup.removeEventListener('click', closeCurTargetPopup);
     }
   }
