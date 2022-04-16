@@ -18,7 +18,7 @@
         <div class="profile__container">
           <div class="profile__avatar-container">
             <img src="images/profile/image.png" alt="" class="profile__avatar">
-            <div class="profile__avatar-edit"></div>
+            <!-- <div class="profile__avatar-edit"></div> -->
           </div>
           <div class="profile__info">
             <div class="profile__redact">
@@ -36,23 +36,38 @@
       </section>
       <div class="popup popup-edit">
         <div class="popup__container">
-          <form name="form-profile-editor" class="popup__form form popup_form-profile">
+          <form name="form-profile-editor" class="popup__form form popup_form-profile" novalidate>
             <h2 class="form__header">Редактировать профиль</h2>
-            <input type="text" name="firstname" placeholder="Имя" class="form__text form__text_input_name">
-            <input type="text" name="about-me" placeholder="О себе" class="form__text form__text_input_job">
-            <input type="submit" class="form__button" value="Сохранить">
+            <div class="form__input-container">
+            <input id="name-input" type="text" name="firstname" placeholder="Имя" class="form__input form__text form__text_input_name"
+              minlength="2" maxlength="40" required>
+            <span class="form__input-error name-input-error"></span>
+          </div>
+          <div class="form__input-container">
+            <input id="about-input" type="text" name="about-me" placeholder="О себе" class="form__input form__text form__text_input_job"
+              minlength="2" maxlength="200" required>
+            <span class="form__input-error about-input-error"></span>
+          </div>
+            <button type="submit" class="form__button form__submit">Сохранить</button>
           </form>
           <button type="button" class="popup__close popup-edit__close"></button>
         </div>
       </div>
       <div class="popup popup-card">
         <div class="popup__container">
-          <form name="form-profile-editor" class="popup__form form popup__form-card">
+          <form name="form-profile-editor" class="popup__form form popup__form-card" novalidate>
             <h2 class="form__header">Новое место</h2>
-            <input type="text" name="name-photo" placeholder="Название" class="form__text form__text_input_name-card">
-            <input type="text" name="link" placeholder="Ссылка на картинку"
-              class="form__text form__text_input_link-card">
-            <input type="submit" class="form__button  popup-card__button" value="Создать">
+            <div class="form__input-container">
+            <input id="name-photo-input" type="text" name="name-photo" placeholder="Название"
+              class="form__text form__text_input_name-card form__input" minlength="2" maxlength="30" required>
+            <span class="form__input-error name-photo-input-error"></span>
+          </div>
+          <div class="form__input-container">
+            <input id="link-photo-input" type="url" name="link" placeholder="Ссылка на картинку"
+              class="form__text form__text_input_link-card form__input" required>
+            <span class="form__input-error link-photo-input-error"></span>
+          </div>
+            <button type="submit" class="form__button  popup-card__button form__submit">Создать</button>
           </form>
           <button type="button" class="popup__close  popup-card__close"></button>
         </div>
@@ -64,7 +79,7 @@
           <button type="button" class="popup-photo__close popup__close"></button>
         </div>
       </div>
-      <div class="popup popup-profile">
+      <!-- <div class="popup popup-profile">
         <div class="popup__container">
           <form name="form-profile-editor" class="popup__form form popup_form-profile">
             <h2 class="form__header">Обновить аватар</h2>
@@ -74,7 +89,7 @@
           </form>
           <button type="button" class="popup__close popup-profile__close"></button>
         </div>
-      </div>
+      </div> -->
     </main>
     <footer class="footer">
       <p class="footer__author">&copy;2022 Сергей Веселов</p>
