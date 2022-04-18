@@ -101,6 +101,6 @@ function handleCardDelete(event) {
 export {
   initialCards,
   renderinitialCards,
-  createCard,
   addCard,
+  popupFormCard,
 }
