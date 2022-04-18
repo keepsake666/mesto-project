@@ -10,7 +10,7 @@
   line-height: 17px;
   background-color: white;
   color: #000000;
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
 }
 
 .form__text:focus {
