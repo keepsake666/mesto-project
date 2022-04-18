@@ -1,3 +1,4 @@
+import '../pages/index.css';
 const profileOpenPopupButton = document.querySelector(".profile__edit-button");
 const profilePopup = document.querySelector(".popup-edit");
 const profileCloseButton = document.querySelector(".popup-edit__close");
@@ -21,10 +22,6 @@ const profileName = document.querySelector(".profile__name");
 const profileText = document.querySelector(".profile__text");
 const profileForm = document.querySelector(".popup_form-profile");
 const popupFormCard = document.querySelector(".popup__form-card");
-
-// const editProfile = document.querySelector('.profile__avatar-container');
-// const popupProfileAvatar = document.querySelector('.popup-profile');
-// const popupProfileClose = document.querySelector('.popup-profile__close')
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
@@ -71,15 +68,6 @@ popupPhotoClose.addEventListener("click", function () {
   closePopup(popupPhoto);
 });
 
-// editProfile.addEventListener('click', function () {
-//   openPopup(popupProfileAvatar);
-// });
-// popupProfileClose.addEventListener('click', function () {
-//   closePopup(popupProfileAvatar)
-// });
-
-// Открытие и закрытие попап
-
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
@@ -91,8 +79,7 @@ profileForm.addEventListener("submit", handleProfileFormSubmit);
 
 // добавление информации в профиль
 
-const initialCards = [
-  {
+const initialCards = [{
     name: "Архыз",
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
   },
