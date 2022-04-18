@@ -1,3 +1,8 @@
+import {
+  openPopup,
+  closePopup,
+} from './modal';
+
 const popupCard = document.querySelector(".popup-card");
 const cards = document.querySelector(".card");
 const popupPhoto = document.querySelector(".popup-photo");
@@ -35,10 +40,6 @@ const initialCards = [{
 const templateCard = document.querySelector(".card-template").content;
 const nameCard = document.querySelector(".form__text_input_name-card");
 const linkCard = document.querySelector(".form__text_input_link-card");
-
-function render() {
-  initialCards.forEach(renderinitialCards);
-}
 
 function createCard(item) {
   const cardElement = templateCard.cloneNode(true);
@@ -98,16 +99,7 @@ function handleCardDelete(event) {
 //удаление карточки
 
 export {
-  popupCard,
-  cards,
-  popupPhoto,
-  popupPhotoName,
-  popupPhotoImgLink,
-  popupFormCardinitialCards,
-  templateCard,
-  nameCard,
-  linkCard,
-  render,
+  initialCards,
   createCard,
   renderinitialCards,
   addCard,
