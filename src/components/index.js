@@ -9,11 +9,9 @@ const profileInfo = document.querySelector(".profile__info");
 const popupFormCard = document.querySelector(".popup__form-card");
 import {
   initialCards,
-  createCard,
   renderinitialCards,
+  createCard,
   addCard,
-  setDeleteHandler,
-  handleCardDelete
 } from './card'
 
 import {
@@ -60,12 +58,8 @@ profileForm.addEventListener("submit", handleProfileFormSubmit);
 
 function render() {
   initialCards.forEach(renderinitialCards);
-}
-createCard();
-renderinitialCards();
-addCard(evt);
-setDeleteHandler();
-handleCardDelete();
+};
+popupFormCard.addEventListener("submit", addCard);
 render();
 
 // --------------------------------------------валидация-----------------------------------------

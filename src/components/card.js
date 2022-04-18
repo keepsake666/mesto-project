@@ -100,9 +100,7 @@ function handleCardDelete(event) {
 
 export {
   initialCards,
-  createCard,
   renderinitialCards,
+  createCard,
   addCard,
-  setDeleteHandler,
-  handleCardDelete
 }
