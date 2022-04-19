@@ -14,12 +14,8 @@ import {
 import {
   profileOpenPopupButton,
   profilePopup,
-  profileCloseButton,
   popupCard,
   buttonAddCard,
-  buttonCloseCard,
-  popupPhoto,
-  popupPhotoClose,
   nameInput,
   jobInput,
   profileName,
@@ -29,29 +25,32 @@ import {
   closePopup,
   handleProfileFormSubmit
 } from './modal';
-// ------------------------
+// ------------------------закрытие попап
+const popups = document.querySelectorAll('.popup');
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup)
+    }
+    if (evt.target.classList.contains('popup__close')) {
+      closePopup(popup)
+    }
+  })
+})
+// ------------------------открытие попап
 profileOpenPopupButton.addEventListener("click", function () {
   openPopup(profilePopup);
   nameInput.value = profileName.textContent;
   jobInput.value = profileText.textContent;
 });
-profileCloseButton.addEventListener("click", function () {
-  closePopup(profilePopup);
-});
 
 buttonAddCard.addEventListener("click", function () {
   openPopup(popupCard);
 });
-buttonCloseCard.addEventListener("click", function () {
-  closePopup(popupCard);
-});
 
-popupPhotoClose.addEventListener("click", function () {
-  closePopup(popupPhoto);
-});
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 
-// ------------------------
+// ------------------------добавление карточек
 
 function render() {
   initialCards.forEach(renderinitialCards);
@@ -59,7 +58,7 @@ function render() {
 popupFormCard.addEventListener("submit", addCard);
 render();
 
-// ------------------------
+// ------------------------валидация
 enableValidation({
   formSelector: '.form',
   inputSelector: '.form__input',

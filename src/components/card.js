@@ -9,6 +9,7 @@ const popupPhoto = document.querySelector(".popup-photo");
 const popupPhotoName = document.querySelector(".popup-photo__name");
 const popupPhotoImgLink = document.querySelector(".popup-photo__img");
 const popupFormCard = document.querySelector(".popup__form-card");
+const popupSubmitCard = document.querySelector(".popup-card__button");
 
 
 const initialCards = [{
@@ -56,8 +57,7 @@ function createCard(item) {
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("card__like_active");
     });
-  cardElement
-    .querySelector(".card__image")
+  cardImage
     .addEventListener("click", function (evt) {
       openPopup(popupPhoto);
       const target = evt.target;
@@ -84,6 +84,8 @@ function addCard(evt) {
   closePopup(popupCard);
   nameCard.value = "";
   linkCard.value = "";
+  popupSubmitCard.classList.add('form__button_inactive');
+  popupSubmitCard.disabled = true
 }
 
 // добавление новых карточек
