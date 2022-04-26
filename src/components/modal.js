@@ -1,3 +1,8 @@
+// ------------------------
+import {
+  apiProfilePatch
+} from './api'
+// ------------------------
 const profileOpenPopupButton = document.querySelector(".profile__edit-button");
 const profilePopup = document.querySelector(".popup-edit");
 const popupCard = document.querySelector(".popup-card");
@@ -7,6 +12,8 @@ const jobInput = document.querySelector(".form__text_input_job");
 const profileName = document.querySelector(".profile__name");
 const profileText = document.querySelector(".profile__text");
 const profileForm = document.querySelector(".popup_form-profile");
+
+// ------------------------
 
 // ---------------
 function openPopup(popup) {
@@ -30,6 +37,7 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileText.textContent = jobInput.value;
+  apiProfilePatch(profileName.textContent,profileText.textContent);
   closePopup(profilePopup);
 }
 // ---------------

@@ -23,8 +23,14 @@ import {
   profileForm,
   openPopup,
   closePopup,
-  handleProfileFormSubmit
+  handleProfileFormSubmit,
+  usertProfileApi
 } from './modal';
+// ------------------------
+import {
+  apiProfile,
+  apiCard
+} from './api'
 // ------------------------закрытие попап
 const popups = document.querySelectorAll('.popup');
 popups.forEach((popup) => {
@@ -52,11 +58,11 @@ profileForm.addEventListener("submit", handleProfileFormSubmit);
 
 // ------------------------добавление карточек
 
-function render() {
-  initialCards.forEach(renderinitialCards);
-};
+// function render() {
+//   initialCards.forEach(renderinitialCards);
+// };
 popupFormCard.addEventListener("submit", addCard);
-render();
+// render();
 
 // ------------------------валидация
 enableValidation({
@@ -67,3 +73,30 @@ enableValidation({
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__input-error_active'
 });
+
+
+// ------------------------c api
+// ------------------------c api
+function profileInfo() {
+  apiProfile()
+    .then((data) => {
+      profileName.textContent = data.name;
+      profileText.textContent = data.about;
+      console.log(data)
+    })
+    .catch((er) =>
+    console.log("что то пошло пошло не так Profile")
+    )
+};
+profileInfo()
+// ------------------------c api
+function loadCards() {
+  apiCard()
+    .then((data) => {
+      data.forEach(renderinitialCards);
+    })
+    .catch((er) =>
+    console.log("что то пошло пошло не так CARD")
+    )
+}
+loadCards()
