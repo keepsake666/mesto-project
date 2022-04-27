@@ -94,6 +94,7 @@ function loadCards() {
   apiCard()
     .then((data) => {
       data.forEach(renderinitialCards);
+      console.log(data)
     })
     .catch((er) =>
     console.log("что то пошло пошло не так CARD")

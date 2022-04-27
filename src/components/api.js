@@ -42,8 +42,24 @@ function apiProfilePatch(nameProfile, aboutProfile) {
   });
 }
 
+// ------------------------отправление карточки
+function apiCardPost(nameCard, urlCard) {
+  fetch(url + '/cards', {
+    method: 'POST',
+    headers: {
+      authorization: aut,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: nameCard,
+      link: urlCard
+    })
+  });
+}
+
 export {
   apiProfile,
   apiCard,
-  apiProfilePatch
+  apiProfilePatch,
+  apiCardPost
 }
