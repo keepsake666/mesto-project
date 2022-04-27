@@ -56,10 +56,22 @@ function apiCardPost(nameCard, urlCard) {
     })
   });
 }
+// ------------------------удаление карточки
+function apiCardDelete(idCard) {
+  fetch(idCard, {
+    method: 'DELETE',
+    headers: {
+      authorization: aut,
+      'Content-Type': 'application/json'
+    }
+  });
+}
+
 
 export {
   apiProfile,
   apiCard,
   apiProfilePatch,
-  apiCardPost
+  apiCardPost,
+  apiCardDelete
 }

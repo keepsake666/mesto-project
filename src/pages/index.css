@@ -27,6 +27,7 @@
 @import url(../blocks/card/__block/card__block.css);
 @import url(../blocks/card/__delete/card__delete.css);
 @import url(../blocks/card/__delete/_disable/card__delete_disable.css);
+@import url(../blocks/card/__id/card__id.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);

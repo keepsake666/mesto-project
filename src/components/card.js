@@ -4,7 +4,8 @@ import {
 } from './modal';
 // ------------------------
 import {
-  apiCardPost
+  apiCardPost,
+  apiCardDelete
 } from './api'
 // ------------------------
 const popupCard = document.querySelector(".popup-card");
@@ -14,38 +15,20 @@ const popupPhotoName = document.querySelector(".popup-photo__name");
 const popupPhotoImgLink = document.querySelector(".popup-photo__img");
 const popupFormCard = document.querySelector(".popup__form-card");
 const popupSubmitCard = document.querySelector(".popup-card__button");
-const myIdApi ='9d9242d0ffb0293e65591c4a'
-
-
-const initialCards = [{
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
+const myIdApi = '9d9242d0ffb0293e65591c4a';
 const templateCard = document.querySelector(".card-template").content;
 const nameCard = document.querySelector(".form__text_input_name-card");
 const linkCard = document.querySelector(".form__text_input_link-card");
+
+function loadCardApi(item) {
+  cardElement.querySelector('.card__number-like').innerText = item.likes.length
+  const cardDeleteDisable = cardElement.querySelector('.card__delete')
+  if (item.owner._id != myIdApi) {
+    cardDeleteDisable.classList.add('card__delete_disable')
+  } else {
+    cardDeleteDisable.innerText = item._id
+  }
+}
 
 function createCard(item) {
   const cardElement = templateCard.cloneNode(true);
@@ -57,9 +40,11 @@ function createCard(item) {
     cardImage.src = "https://imagetext2.ru/pics_max/images_3162.gif";
   } else {
     cardImage.src = item.link;
-  }
-  if (item.owner._id != myIdApi){
+  };
+  if (item.owner._id != myIdApi) {
     cardDeleteDisable.classList.add('card__delete_disable')
+  } else {
+    cardDeleteDisable.innerText = item._id
   }
   cardImage.alt = item.name;
   cardElement
@@ -75,7 +60,6 @@ function createCard(item) {
       popupPhotoImgLink.src = target.getAttribute("src");
       popupPhotoImgLink.alt = target.getAttribute("alt");
     });
-
   setDeleteHandler(cardElement);
   return cardElement;
 }
@@ -87,10 +71,10 @@ function renderinitialCards(date) {
 
 function addCard(evt) {
   evt.preventDefault();
-  renderinitialCards({
-    name: nameCard.value,
-    link: linkCard.value,
-  });
+  // renderinitialCards({
+  //   name: nameCard.value,
+  //   link: linkCard.value,
+  // });
   apiCardPost(nameCard.value, linkCard.value)
   closePopup(popupCard);
   nameCard.value = "";
@@ -107,12 +91,12 @@ function setDeleteHandler(el) {
 
 function handleCardDelete(event) {
   event.target.closest(".card__item").remove();
-}
+  apiCardDelete('https://nomoreparties.co/v1/plus-cohort-9/cards/' + event.target.innerText)
+};
 
 //удаление карточки
 
 export {
-  initialCards,
   renderinitialCards,
   addCard,
   popupFormCard,

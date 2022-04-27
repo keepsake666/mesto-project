@@ -1,7 +1,6 @@
 import '../pages/index.css';
 // ------------------------
 import {
-  initialCards,
   renderinitialCards,
   addCard,
   popupFormCard
@@ -84,9 +83,9 @@ function profileInfo() {
       profileText.textContent = data.about;
       console.log(data)
     })
-    .catch((er) =>
-    console.log("что то пошло пошло не так Profile")
-    )
+    .catch((er) => {
+      console.log("что то пошло пошло не так Profile")
+    })
 };
 profileInfo()
 // ------------------------c api
@@ -96,8 +95,8 @@ function loadCards() {
       data.forEach(renderinitialCards);
       console.log(data)
     })
-    .catch((er) =>
-    console.log("что то пошло пошло не так CARD")
-    )
+    .catch((er) => {
+      console.log("что то пошло пошло не так CARD")
+    })
 }
 loadCards()
