@@ -5,7 +5,9 @@ import {
 // ------------------------
 import {
   apiCardPost,
-  apiCardDelete
+  apiCardDelete,
+  apiLikeCard,
+  apiLikeDelete
 } from './api'
 // ------------------------
 const popupCard = document.querySelector(".popup-card");
@@ -20,22 +22,21 @@ const templateCard = document.querySelector(".card-template").content;
 const nameCard = document.querySelector(".form__text_input_name-card");
 const linkCard = document.querySelector(".form__text_input_link-card");
 
-function loadCardApi(item) {
-  cardElement.querySelector('.card__number-like').innerText = item.likes.length
-  const cardDeleteDisable = cardElement.querySelector('.card__delete')
-  if (item.owner._id != myIdApi) {
-    cardDeleteDisable.classList.add('card__delete_disable')
-  } else {
-    cardDeleteDisable.innerText = item._id
-  }
-}
-
 function createCard(item) {
   const cardElement = templateCard.cloneNode(true);
   cardElement.querySelector(".card__name").innerText = item.name;
-  cardElement.querySelector('.card__number-like').innerText = item.likes.length
+  const cardNumberLike = cardElement.querySelector('.card__number-like');
+  cardNumberLike.innerText = item.likes.length;
   const cardImage = cardElement.querySelector(".card__image");
   const cardDeleteDisable = cardElement.querySelector('.card__delete')
+  const cardLikeNumber = cardElement.querySelector('.card__like')
+  item.likes.forEach(function (item) {
+    if (item._id === myIdApi) {
+      cardLikeNumber.classList.add('card__like_active')
+    }
+  })
+  cardLikeNumber.innerText = item._id
+  cardDeleteDisable.innerText = item._id
   if (!item.link) {
     cardImage.src = "https://imagetext2.ru/pics_max/images_3162.gif";
   } else {
@@ -43,15 +44,18 @@ function createCard(item) {
   };
   if (item.owner._id != myIdApi) {
     cardDeleteDisable.classList.add('card__delete_disable')
-  } else {
-    cardDeleteDisable.innerText = item._id
   }
   cardImage.alt = item.name;
-  cardElement
-    .querySelector(".card__like")
-    .addEventListener("click", function (evt) {
-      evt.target.classList.toggle("card__like_active");
-    });
+  cardLikeNumber.addEventListener("click", function (evt) {
+    if (evt.target.classList[1] != 'card__like_active') {
+      apiLikeCard('https://nomoreparties.co/v1/plus-cohort-9/cards/likes/' + evt.target.innerText)
+      cardNumberLike.innerText = item.likes.length + 1
+    } else {
+      apiLikeDelete('https://nomoreparties.co/v1/plus-cohort-9/cards/likes/' + evt.target.innerText)
+      cardNumberLike.innerText = item.likes.length - 1
+    };
+    evt.target.classList.toggle("card__like_active");
+  });
   cardImage
     .addEventListener("click", function (evt) {
       openPopup(popupPhoto);

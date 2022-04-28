@@ -57,11 +57,8 @@ profileForm.addEventListener("submit", handleProfileFormSubmit);
 
 // ------------------------добавление карточек
 
-// function render() {
-//   initialCards.forEach(renderinitialCards);
-// };
 popupFormCard.addEventListener("submit", addCard);
-// render();
+
 
 // ------------------------валидация
 enableValidation({

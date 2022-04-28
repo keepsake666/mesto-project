@@ -66,12 +66,33 @@ function apiCardDelete(idCard) {
     }
   });
 }
-
+// ------------------------добавить лайк
+function apiLikeCard(idLike) {
+  fetch(idLike, {
+    method: 'PUT',
+    headers: {
+      authorization: aut,
+      'Content-Type': 'application/json'
+    }
+  });
+}
+// ------------------------удалить лайк
+function apiLikeDelete(idLike) {
+  fetch(idLike, {
+    method: 'DELETE',
+    headers: {
+      authorization: aut,
+      'Content-Type': 'application/json'
+    }
+  });
+}
 
 export {
   apiProfile,
   apiCard,
   apiProfilePatch,
   apiCardPost,
-  apiCardDelete
+  apiCardDelete,
+  apiLikeCard,
+  apiLikeDelete
 }
