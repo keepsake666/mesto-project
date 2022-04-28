@@ -86,6 +86,19 @@ function apiLikeDelete(idLike) {
     }
   });
 }
+// ------------------------аватарка
+function apiAvatarRedact(urlAvatar) {
+  fetch(url + '/users/me/avatar', {
+    method: 'PATCH',
+    headers: {
+      authorization: aut,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      avatar: urlAvatar
+    })
+  });
+}
 
 export {
   apiProfile,
@@ -94,5 +107,6 @@ export {
   apiCardPost,
   apiCardDelete,
   apiLikeCard,
-  apiLikeDelete
+  apiLikeDelete,
+  apiAvatarRedact
 }

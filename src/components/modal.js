@@ -1,6 +1,7 @@
 // ------------------------
 import {
-  apiProfilePatch
+  apiProfilePatch,
+  apiAvatarRedact
 } from './api'
 // ------------------------
 const profileOpenPopupButton = document.querySelector(".profile__edit-button");
@@ -12,7 +13,12 @@ const jobInput = document.querySelector(".form__text_input_job");
 const profileName = document.querySelector(".profile__name");
 const profileText = document.querySelector(".profile__text");
 const profileForm = document.querySelector(".popup_form-profile");
-
+const editProfile = document.querySelector('.profile__avatar-container');
+const popupProfileAvatar = document.querySelector('.popup-profile');
+const formAvatar = document.querySelector('.popup__avatar');
+const imageProfileAvatar = document.querySelector('.profile__avatar');
+const inputLinkAvatar = document.querySelector('.form__text_input_link-profile');
+const submitAvatar = document.querySelector('.popup__avatar-submit');
 // ------------------------
 
 // ---------------
@@ -40,6 +46,16 @@ function handleProfileFormSubmit(evt) {
   apiProfilePatch(profileName.textContent,profileText.textContent);
   closePopup(profilePopup);
 }
+
+function handleAvatarFormSubmit(evt) {
+  evt.preventDefault();
+  imageProfileAvatar.src = inputLinkAvatar.value;
+  apiAvatarRedact(inputLinkAvatar.value)
+  closePopup(popupProfileAvatar);
+  inputLinkAvatar.value = '';
+  submitAvatar.classList.add('form__button_inactive');
+  submitAvatar.disabled = true
+}
 // ---------------
 export {
   profileOpenPopupButton,
@@ -53,5 +69,9 @@ export {
   profileForm,
   openPopup,
   closePopup,
-  handleProfileFormSubmit
+  handleProfileFormSubmit,
+  handleAvatarFormSubmit,
+  editProfile,
+  popupProfileAvatar,
+  formAvatar
 };

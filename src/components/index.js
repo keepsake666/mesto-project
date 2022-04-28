@@ -23,7 +23,11 @@ import {
   openPopup,
   closePopup,
   handleProfileFormSubmit,
-  usertProfileApi
+  usertProfileApi,
+  editProfile,
+  popupProfileAvatar,
+  handleAvatarFormSubmit,
+  formAvatar
 } from './modal';
 // ------------------------
 import {
@@ -48,11 +52,15 @@ profileOpenPopupButton.addEventListener("click", function () {
   nameInput.value = profileName.textContent;
   jobInput.value = profileText.textContent;
 });
-
+editProfile.addEventListener('click', function () {
+  openPopup(popupProfileAvatar);
+});
 buttonAddCard.addEventListener("click", function () {
   openPopup(popupCard);
 });
-
+// ------------------------аватарка
+formAvatar.addEventListener("submit", handleAvatarFormSubmit);
+// ------------------------профиль
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 
 // ------------------------добавление карточек
@@ -73,6 +81,7 @@ enableValidation({
 
 // ------------------------c api
 // ------------------------c api
+
 function profileInfo() {
   apiProfile()
     .then((data) => {
