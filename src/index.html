@@ -17,6 +17,7 @@
         <div class="profile__container">
           <div class="profile__avatar-container">
             <img src="<%=require('./images/profile/image.png')%>" alt="аватарка" class="profile__avatar">
+            <div class="profile__avatar-edit"></div>
           </div>
           <div class="profile__info">
             <div class="profile__redact">
@@ -46,7 +47,7 @@
                 class="form__input form__text form__text_input_job" minlength="2" maxlength="200" required>
               <span class="form__input-error about-input-error"></span>
             </div>
-            <button type="submit" class="form__button form__submit">Сохранить</button>
+            <button type="submit" class="form__button form__submit form__submit-profile">Сохранить</button>
           </form>
           <button type="button" class="popup__close popup-edit__close"></button>
         </div>
@@ -77,6 +78,20 @@
           <button type="button" class="popup-photo__close popup__close"></button>
         </div>
       </div>
+      <div class="popup popup-profile">
+        <div class="popup__container">
+          <form name="form-profile-editor" class="popup__form form popup__avatar">
+            <h2 class="form__header">Обновить аватар</h2>
+            <div class="form__input-container">
+              <input id="avatar-profile-input" type="url" name="link" placeholder="Ссылка на картинку"
+                class="form__text form__text_input_link-profile form__input" required>
+              <span class="form__input-error avatar-profile-input-error"></span>
+            </div>
+            <button type="submit" class="form__button popup__avatar-submit form__submit">Сохранить</button>
+          </form>
+          <button type="button" class="popup__close popup-profile__close"></button>
+        </div>
+      </div>
     </main>
     <footer class="footer">
       <p class="footer__author">&copy;2022 Сергей Веселов</p>
@@ -87,7 +102,11 @@
       <img src="" alt="" class="card__image">
       <div class="card__block">
         <h3 class="card__name"></h3>
-        <button type="button" class="card__like"></button>
+        <div class="card__like-container">
+          <button type="button" class="card__like"></button>
+          <span class="card__number-like"></span>
+          <span class="card__id"></span>
+        </div>
       </div>
       <button type="button" class="card__delete"></button>
     </li>
