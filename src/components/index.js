@@ -23,7 +23,6 @@ import {
   openPopup,
   closePopup,
   handleProfileFormSubmit,
-  usertProfileApi,
   editProfile,
   popupProfileAvatar,
   handleAvatarFormSubmit,
@@ -32,9 +31,12 @@ import {
 // ------------------------
 import {
   apiProfile,
-  apiCard
+  apiCard,
+  apiAvatar
 } from './api'
+
 // ------------------------закрытие попап
+
 const popups = document.querySelectorAll('.popup');
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
@@ -46,7 +48,9 @@ popups.forEach((popup) => {
     }
   })
 })
+
 // ------------------------открытие попап
+
 profileOpenPopupButton.addEventListener("click", function () {
   openPopup(profilePopup);
   nameInput.value = profileName.textContent;
@@ -59,14 +63,16 @@ buttonAddCard.addEventListener("click", function () {
   openPopup(popupCard);
 });
 // ------------------------аватарка
+
 formAvatar.addEventListener("submit", handleAvatarFormSubmit);
+
 // ------------------------профиль
+
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 
 // ------------------------добавление карточек
 
 popupFormCard.addEventListener("submit", addCard);
-
 
 // ------------------------валидация
 enableValidation({
@@ -78,31 +84,44 @@ enableValidation({
   errorClass: 'form__input-error_active'
 });
 
-
-// ------------------------c api
-// ------------------------c api
+// ------------------------c api данные профиля
 
 function profileInfo() {
   apiProfile()
     .then((data) => {
       profileName.textContent = data.name;
       profileText.textContent = data.about;
-      console.log(data)
     })
     .catch((er) => {
-      console.log("что то пошло пошло не так Profile")
+      console.log(er)
     })
 };
 profileInfo()
-// ------------------------c api
+
+// ------------------------c api загрузка карточек
+
 function loadCards() {
   apiCard()
     .then((data) => {
       data.forEach(renderinitialCards);
-      console.log(data)
     })
     .catch((er) => {
-      console.log("что то пошло пошло не так CARD")
+      console.log(er)
     })
 }
 loadCards()
+
+// ------------------------c api загрузка аватарки
+
+const profileAvatar = document.querySelector('.profile__avatar');
+
+function loadAvatar() {
+  apiAvatar()
+    .then((date) => {
+      profileAvatar.src = date.avatar
+    })
+    .catch((er) => {
+      console.log(er)
+    })
+}
+loadAvatar()

@@ -22,6 +22,8 @@ const templateCard = document.querySelector(".card-template").content;
 const nameCard = document.querySelector(".form__text_input_name-card");
 const linkCard = document.querySelector(".form__text_input_link-card");
 
+// -----------------создание карточек
+
 function createCard(item) {
   const cardElement = templateCard.cloneNode(true);
   cardElement.querySelector(".card__name").innerText = item.name;
@@ -72,23 +74,23 @@ function renderinitialCards(date) {
   const newCard = createCard(date);
   cards.prepend(newCard);
 }
-
+// ----------------добавление новых карточек
 function addCard(evt) {
   evt.preventDefault();
+  popupSubmitCard.textContent = "Создать..."
   // renderinitialCards({
   //   name: nameCard.value,
   //   link: linkCard.value,
   // });
   apiCardPost(nameCard.value, linkCard.value)
   closePopup(popupCard);
+  popupSubmitCard.textContent = "Создать"
   nameCard.value = "";
   linkCard.value = "";
   popupSubmitCard.classList.add('form__button_inactive');
   popupSubmitCard.disabled = true
 }
-
-// добавление новых карточек
-
+//-------------------удаление карточки
 function setDeleteHandler(el) {
   el.querySelector(".card__delete").addEventListener("click", handleCardDelete);
 }
@@ -97,8 +99,6 @@ function handleCardDelete(event) {
   event.target.closest(".card__item").remove();
   apiCardDelete('https://nomoreparties.co/v1/plus-cohort-9/cards/' + event.target.innerText)
 };
-
-//удаление карточки
 
 export {
   renderinitialCards,

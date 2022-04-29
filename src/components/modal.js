@@ -19,43 +19,48 @@ const formAvatar = document.querySelector('.popup__avatar');
 const imageProfileAvatar = document.querySelector('.profile__avatar');
 const inputLinkAvatar = document.querySelector('.form__text_input_link-profile');
 const submitAvatar = document.querySelector('.popup__avatar-submit');
-// ------------------------
+const submitProfile = document.querySelector('.form__submit-profile');
 
-// ---------------
+// --------------- открытие попап
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener("keydown", closeKeyPopup);
 }
-// ---------------
+// --------------- закрытие попап
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeKeyPopup);
 }
-
+// --------------- закрытие попап по еск
 function closeKeyPopup(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector('.popup_opened')
     closePopup(openedPopup);
   }
 }
-// ---------------
+// --------------- сабмит профиля
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
+  submitProfile.textContent = "Сохранить..."
   profileName.textContent = nameInput.value;
   profileText.textContent = jobInput.value;
-  apiProfilePatch(profileName.textContent,profileText.textContent);
+  apiProfilePatch(profileName.textContent, profileText.textContent);
   closePopup(profilePopup);
+  submitProfile.textContent = "Сохранить"
 }
-
+// ---------------сабмит аватарки
 function handleAvatarFormSubmit(evt) {
   evt.preventDefault();
+  submitAvatar.textContent = "Сохранить..."
   imageProfileAvatar.src = inputLinkAvatar.value;
   apiAvatarRedact(inputLinkAvatar.value)
   closePopup(popupProfileAvatar);
+  submitAvatar.textContent = "Сохранить"
   inputLinkAvatar.value = '';
   submitAvatar.classList.add('form__button_inactive');
   submitAvatar.disabled = true
 }
+
 // ---------------
 export {
   profileOpenPopupButton,

@@ -12,6 +12,7 @@ function apiProfile() {
       if (res.ok) {
         return res.json()
       }
+      return Promise.reject(`Ошибка: ${res.status}`);
     })
 };
 // -----------------------карточки с api
@@ -25,6 +26,7 @@ function apiCard() {
       if (res.ok) {
         return res.json()
       }
+      return Promise.reject(`Ошибка: ${res.status}`);
     })
 };
 // ------------------------информация о профиле на api
@@ -86,7 +88,7 @@ function apiLikeDelete(idLike) {
     }
   });
 }
-// ------------------------аватарка
+// ------------------------аватарка отправка
 function apiAvatarRedact(urlAvatar) {
   fetch(url + '/users/me/avatar', {
     method: 'PATCH',
@@ -99,7 +101,20 @@ function apiAvatarRedact(urlAvatar) {
     })
   });
 }
-
+// ------------------------аватарка загрузка
+function apiAvatar() {
+  return fetch(url + '/users/me', {
+      headers: {
+        authorization: aut
+      }
+    })
+    .then((res) => {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
+};
 export {
   apiProfile,
   apiCard,
@@ -108,5 +123,6 @@ export {
   apiCardDelete,
   apiLikeCard,
   apiLikeDelete,
-  apiAvatarRedact
+  apiAvatarRedact,
+  apiAvatar
 }
