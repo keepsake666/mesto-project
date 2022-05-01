@@ -87,23 +87,25 @@ function apiCardDelete(idCard) {
 }
 // ------------------------добавить лайк
 function apiLikeCard(idLike) {
-  fetch(idLike, {
+  return fetch(idLike, {
     method: 'PUT',
     headers: {
       authorization: aut,
       'Content-Type': 'application/json'
     }
-  });
+  })
+  .then(checkResponse)
 }
 // ------------------------удалить лайк
 function apiLikeDelete(idLike) {
-  fetch(idLike, {
+  return fetch(idLike, {
     method: 'DELETE',
     headers: {
       authorization: aut,
       'Content-Type': 'application/json'
     }
-  });
+  })
+  .then(checkResponse)
 }
 // ------------------------аватарка отправка
 function apiAvatarRedact(urlAvatar) {

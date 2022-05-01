@@ -30,16 +30,18 @@ function createCard(item) {
   const cardNumberLike = cardElement.querySelector('.card__number-like');
   cardNumberLike.innerText = item.likes.length;
   const cardImage = cardElement.querySelector(".card__image");
-  const cardDeleteDisable = cardElement.querySelector('.card__delete')
-  // const cardLikeNumber = cardElement.querySelector('.card__like')
+  const cardDeleteDisable = cardElement.querySelector('.card__delete');
+  const cardLikeNumber = cardElement.querySelector('.card__like');
 
-  // item.likes.forEach(function (item) {
-  //   if (item._id === myIdApi) {
-  //     cardLikeNumber.classList.add('card__like_active')
-  //   }
-  // })
-  // cardLikeNumber.innerText = item._id
-  cardDeleteDisable.innerText = item._id
+  if (item.likes) {
+    item.likes.forEach(function (like) {
+      if (like._id === myIdApi) {
+        cardLikeNumber.classList.add('card__like_active')
+      }
+    })
+  };
+  cardLikeNumber.innerText = item._id;
+  cardDeleteDisable.innerText = item._id;
   if (!item.link) {
     cardImage.src = "https://imagetext2.ru/pics_max/images_3162.gif";
   } else {
@@ -47,18 +49,30 @@ function createCard(item) {
   };
   if (item.owner._id != myIdApi) {
     cardDeleteDisable.classList.add('card__delete_disable')
-  }
+  };
   cardImage.alt = item.name;
-  // cardLikeNumber.addEventListener("click", function (evt) {
-  //   if (evt.target.classList[1] != 'card__like_active') {
-  //     apiLikeCard('https://nomoreparties.co/v1/plus-cohort-9/cards/likes/' + evt.target.innerText)
-  //     cardNumberLike.innerText = item.likes.length + 1
-  //   } else {
-  //     apiLikeDelete('https://nomoreparties.co/v1/plus-cohort-9/cards/likes/' + evt.target.innerText)
-  //     cardNumberLike.innerText = item.likes.length - 1
-  //   };
-  //   evt.target.classList.toggle("card__like_active");
-  // });
+
+  cardLikeNumber.addEventListener("click", function (evt) {
+    if (evt.target.classList[1] != 'card__like_active') {
+      apiLikeCard('https://nomoreparties.co/v1/plus-cohort-9/cards/likes/' + evt.target.innerText)
+        .then(res => {
+          cardNumberLike.innerText = res.likes.length
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    } else {
+      apiLikeDelete('https://nomoreparties.co/v1/plus-cohort-9/cards/likes/' + evt.target.innerText)
+        .then(res => {
+          cardNumberLike.innerText = res.likes.length
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    };
+    evt.target.classList.toggle("card__like_active");
+  });
+
   cardImage
     .addEventListener("click", function (evt) {
       openPopup(popupPhoto);
@@ -69,7 +83,7 @@ function createCard(item) {
     });
   setDeleteHandler(cardElement);
   return cardElement;
-}
+};
 
 function renderinitialCards(date) {
   const newCard = createCard(date);
@@ -85,8 +99,9 @@ function addCard(evt) {
         name: nameCard.value,
         link: linkCard.value,
         likes: '',
-        _id:'',
-        owner:'',
+        _id: '',
+        cardLikeNumber: "",
+        owner: '',
       });
       closePopup(popupCard);
       nameCard.value = "";
