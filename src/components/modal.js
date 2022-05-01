@@ -1,7 +1,7 @@
 // ------------------------
 import {
   apiProfilePatch,
-  apiAvatarRedact
+  apiAvatarRedact,
 } from './api'
 // ------------------------
 const profileOpenPopupButton = document.querySelector(".profile__edit-button");
@@ -41,24 +41,39 @@ function closeKeyPopup(evt) {
 // --------------- сабмит профиля
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  submitProfile.textContent = "Сохранить..."
-  profileName.textContent = nameInput.value;
-  profileText.textContent = jobInput.value;
-  apiProfilePatch(profileName.textContent, profileText.textContent);
-  closePopup(profilePopup);
-  submitProfile.textContent = "Сохранить"
+  submitProfile.textContent = "Сохранить...";
+  apiProfilePatch(nameInput, jobInput)
+    .then((res) => {
+      closePopup(profilePopup)
+      profileName.textContent = nameInput.value;
+      profileText.textContent = jobInput.value;
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      submitProfile.textContent = "Сохранить";
+    })
+
 }
 // ---------------сабмит аватарки
 function handleAvatarFormSubmit(evt) {
   evt.preventDefault();
   submitAvatar.textContent = "Сохранить..."
-  imageProfileAvatar.src = inputLinkAvatar.value;
   apiAvatarRedact(inputLinkAvatar.value)
-  closePopup(popupProfileAvatar);
-  submitAvatar.textContent = "Сохранить"
-  inputLinkAvatar.value = '';
-  submitAvatar.classList.add('form__button_inactive');
-  submitAvatar.disabled = true
+    .then(res => {
+      closePopup(popupProfileAvatar);
+      imageProfileAvatar.src = inputLinkAvatar.value;
+      inputLinkAvatar.value = '';
+      submitAvatar.classList.add('form__button_inactive');
+      submitAvatar.disabled = true
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      submitAvatar.textContent = "Сохранить";
+    })
 }
 
 // ---------------
