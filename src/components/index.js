@@ -4,11 +4,11 @@ import {
   renderinitialCards,
   addCard,
   popupFormCard
-} from './card'
+} from './card';
 // ------------------------
 import {
   enableValidation
-} from './validate'
+} from './validate';
 // ------------------------
 import {
   profileOpenPopupButton,
@@ -31,10 +31,10 @@ import {
 // ------------------------
 import {
   apiProfile,
-  apiCard,
-  apiAvatar
-} from './api'
+  apiCard
+} from './api';
 
+export let userId;
 // ------------------------закрытие попап
 
 const popups = document.querySelectorAll('.popup');
@@ -47,7 +47,7 @@ popups.forEach((popup) => {
       closePopup(popup)
     }
   })
-})
+});
 
 // ------------------------открытие попап
 
@@ -84,44 +84,17 @@ enableValidation({
   errorClass: 'form__input-error_active'
 });
 
-// ------------------------c api данные профиля
-
-function profileInfo() {
-  apiProfile()
-    .then((data) => {
-      profileName.textContent = data.name;
-      profileText.textContent = data.about;
-    })
-    .catch((er) => {
-      console.log(er)
-    })
-};
-profileInfo()
-
-// ------------------------c api загрузка карточек
-
-function loadCards() {
-  apiCard()
-    .then((data) => {
-      data.forEach(renderinitialCards);
-    })
-    .catch((er) => {
-      console.log(er)
-    })
-}
-loadCards()
-
-// ------------------------c api загрузка аватарки
-
+// ------------------------c api данные профиля и карточек
 const profileAvatar = document.querySelector('.profile__avatar');
 
-function loadAvatar() {
-  apiAvatar()
-    .then((date) => {
-      profileAvatar.src = date.avatar
-    })
-    .catch((er) => {
-      console.log(er)
-    })
-}
-loadAvatar()
+Promise.all([apiProfile(), apiCard()])
+  .then(([data, cardData]) => {
+    profileName.textContent = data.name;
+    profileText.textContent = data.about;
+    profileAvatar.src = data.avatar;
+    userId = data._id;
+    cardData.forEach(renderinitialCards);
+  })
+  .catch((er) => {
+    console.error(er)
+  });
