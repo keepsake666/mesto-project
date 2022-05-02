@@ -101,13 +101,13 @@ function addCard(evt) {
       renderinitialCards({
         name: nameCard.value,
         link: linkCard.value,
+        _id: res._id,
         likes: '',
         cardLikeNumber: 0,
         owner: {
           _id: userId
         },
       });
-      console.log(res._id)
       closePopup(popupCard);
       nameCard.value = "";
       linkCard.value = "";
@@ -130,7 +130,6 @@ function handleCardDelete(event) {
   apiCardDelete('https://nomoreparties.co/v1/plus-cohort-9/cards/' + event.target.innerText)
     .then(res => {
       event.target.closest(".card__item").remove()
-      console.log(res)
     })
     .catch((err) => {
       console.log(err);
