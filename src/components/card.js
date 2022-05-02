@@ -57,23 +57,24 @@ function createCard(item) {
   // -----------------добавление и удаление лайка
   cardLikeNumber.addEventListener("click", function (evt) {
     if (evt.target.classList[1] != 'card__like_active') {
-      apiLikeCard('https://nomoreparties.co/v1/plus-cohort-9/cards/likes/' + evt.target.innerText)
+      apiLikeCard(evt.target.innerText)
         .then(res => {
           cardNumberLike.innerText = res.likes.length
+          evt.target.classList.add("card__like_active")
         })
         .catch((err) => {
           console.log(err);
         })
     } else {
-      apiLikeDelete('https://nomoreparties.co/v1/plus-cohort-9/cards/likes/' + evt.target.innerText)
+      apiLikeDelete(evt.target.innerText)
         .then(res => {
           cardNumberLike.innerText = res.likes.length
+          evt.target.classList.remove("card__like_active");
         })
         .catch((err) => {
           console.log(err);
         })
     };
-    evt.target.classList.toggle("card__like_active");
   });
 
   cardImage
@@ -127,7 +128,7 @@ function setDeleteHandler(el) {
 };
 
 function handleCardDelete(event) {
-  apiCardDelete('https://nomoreparties.co/v1/plus-cohort-9/cards/' + event.target.innerText)
+  apiCardDelete(event.target.innerText)
     .then(res => {
       event.target.closest(".card__item").remove()
     })
