@@ -24,15 +24,15 @@ const submitProfile = document.querySelector('.form__submit-profile');
 // --------------- открытие попап
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener("keydown", closeKeyPopup);
+  document.addEventListener("keydown", handleEscKey);
 };
-// --------------- закрытие попап
+// --------------- закрытие попап 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeKeyPopup);
+  document.removeEventListener('keydown', handleEscKey);
 };
 // --------------- закрытие попап по еск
-function closeKeyPopup(evt) {
+function handleEscKey(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector('.popup_opened')
     closePopup(openedPopup);
