@@ -1,4 +1,3 @@
-const url = 'https://nomoreparties.co/v1/plus-cohort-9';
 const aut = 'fee29014-062b-4401-8525-ee1398a9c8ac';
 const config = {
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-9',
@@ -7,6 +6,7 @@ const config = {
     'Content-Type': 'application/json',
   },
 };
+
 const checkResponse = res => {
   if (res.ok) {
     return res.json()
@@ -15,7 +15,6 @@ const checkResponse = res => {
   }
 }
 // ------------------------информация о профиле c api
-
 function apiProfile() {
   return fetch(`${config.baseUrl}/users/me`, {
       headers: {
@@ -23,30 +22,20 @@ function apiProfile() {
         'Content-Type': 'application/json'
       }
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(checkResponse)
 };
 // -----------------------карточки с api
 function apiCard() {
-  return fetch(url + '/cards', {
+  return fetch(`${config.baseUrl}/cards`, {
       headers: {
         authorization: aut
       }
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(checkResponse)
 };
 // ------------------------информация о профиле на api
 function apiProfilePatch(nameProfile, aboutProfile) {
-  return fetch(url + '/users/me', {
+  return fetch(`${config.baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
         authorization: aut,
@@ -59,10 +48,9 @@ function apiProfilePatch(nameProfile, aboutProfile) {
     })
     .then(checkResponse)
 };
-
 // ------------------------отправление карточки
 function apiCardPost(nameCard, urlCard) {
-  return fetch(url + '/cards', {
+  return fetch(`${config.baseUrl}/cards`, {
       method: 'POST',
       headers: {
         authorization: aut,
@@ -74,42 +62,43 @@ function apiCardPost(nameCard, urlCard) {
       })
     })
     .then(checkResponse)
-}
+};
 // ------------------------удаление карточки
 function apiCardDelete(idCard) {
-  fetch(idCard, {
-    method: 'DELETE',
-    headers: {
-      authorization: aut,
-      'Content-Type': 'application/json'
-    }
-  });
-}
+  return fetch(idCard, {
+      method: 'DELETE',
+      headers: {
+        authorization: aut,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(checkResponse)
+};
 // ------------------------добавить лайк
 function apiLikeCard(idLike) {
   return fetch(idLike, {
-    method: 'PUT',
-    headers: {
-      authorization: aut,
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(checkResponse)
-}
+      method: 'PUT',
+      headers: {
+        authorization: aut,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(checkResponse)
+};
 // ------------------------удалить лайк
 function apiLikeDelete(idLike) {
   return fetch(idLike, {
-    method: 'DELETE',
-    headers: {
-      authorization: aut,
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(checkResponse)
-}
+      method: 'DELETE',
+      headers: {
+        authorization: aut,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(checkResponse)
+};
 // ------------------------аватарка отправка
 function apiAvatarRedact(urlAvatar) {
-  return fetch(url + '/users/me/avatar', {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
         authorization: aut,
@@ -120,8 +109,7 @@ function apiAvatarRedact(urlAvatar) {
       })
     })
     .then(checkResponse)
-}
-// ------------------------аватарка загрузка
+};
 
 export {
   apiProfile,
@@ -133,4 +121,4 @@ export {
   apiLikeDelete,
   apiAvatarRedact,
   checkResponse
-}
+};

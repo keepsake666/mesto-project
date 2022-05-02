@@ -25,19 +25,19 @@ const submitProfile = document.querySelector('.form__submit-profile');
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener("keydown", closeKeyPopup);
-}
+};
 // --------------- закрытие попап
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeKeyPopup);
-}
+};
 // --------------- закрытие попап по еск
 function closeKeyPopup(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector('.popup_opened')
     closePopup(openedPopup);
   }
-}
+};
 // --------------- сабмит профиля
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -54,8 +54,7 @@ function handleProfileFormSubmit(evt) {
     .finally(() => {
       submitProfile.textContent = "Сохранить";
     })
-
-}
+};
 // ---------------сабмит аватарки
 function handleAvatarFormSubmit(evt) {
   evt.preventDefault();
@@ -74,7 +73,7 @@ function handleAvatarFormSubmit(evt) {
     .finally(() => {
       submitAvatar.textContent = "Сохранить";
     })
-}
+};
 
 // ---------------
 export {

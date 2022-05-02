@@ -8,7 +8,11 @@ import {
   apiCardDelete,
   apiLikeCard,
   apiLikeDelete,
-} from './api'
+} from './api';
+
+import {
+  userId
+} from './index';
 // ------------------------
 const popupCard = document.querySelector(".popup-card");
 const cards = document.querySelector(".card");
@@ -17,7 +21,6 @@ const popupPhotoName = document.querySelector(".popup-photo__name");
 const popupPhotoImgLink = document.querySelector(".popup-photo__img");
 const popupFormCard = document.querySelector(".popup__form-card");
 const popupSubmitCard = document.querySelector(".popup-card__button");
-const myIdApi = '9d9242d0ffb0293e65591c4a';
 const templateCard = document.querySelector(".card-template").content;
 const nameCard = document.querySelector(".form__text_input_name-card");
 const linkCard = document.querySelector(".form__text_input_link-card");
@@ -35,7 +38,7 @@ function createCard(item) {
 
   if (item.likes) {
     item.likes.forEach(function (like) {
-      if (like._id === myIdApi) {
+      if (like._id === userId) {
         cardLikeNumber.classList.add('card__like_active')
       }
     })
@@ -47,11 +50,11 @@ function createCard(item) {
   } else {
     cardImage.src = item.link;
   };
-  if (item.owner._id != myIdApi) {
+  if (item.owner._id != userId) {
     cardDeleteDisable.classList.add('card__delete_disable')
   };
   cardImage.alt = item.name;
-
+  // -----------------добавление и удаление лайка
   cardLikeNumber.addEventListener("click", function (evt) {
     if (evt.target.classList[1] != 'card__like_active') {
       apiLikeCard('https://nomoreparties.co/v1/plus-cohort-9/cards/likes/' + evt.target.innerText)
@@ -99,10 +102,12 @@ function addCard(evt) {
         name: nameCard.value,
         link: linkCard.value,
         likes: '',
-        _id: '',
-        cardLikeNumber: "",
-        owner: '',
+        cardLikeNumber: 0,
+        owner: {
+          _id: userId
+        },
       });
+      console.log(res._id)
       closePopup(popupCard);
       nameCard.value = "";
       linkCard.value = "";
@@ -115,19 +120,25 @@ function addCard(evt) {
     .finally(() => {
       popupSubmitCard.textContent = "Создать";
     })
-}
+};
 //-------------------удаление карточки
 function setDeleteHandler(el) {
   el.querySelector(".card__delete").addEventListener("click", handleCardDelete);
-}
+};
 
 function handleCardDelete(event) {
-  event.target.closest(".card__item").remove();
   apiCardDelete('https://nomoreparties.co/v1/plus-cohort-9/cards/' + event.target.innerText)
+    .then(res => {
+      event.target.closest(".card__item").remove()
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log(err);
+    })
 };
 
 export {
   renderinitialCards,
   addCard,
   popupFormCard,
-}
+};

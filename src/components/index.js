@@ -4,11 +4,11 @@ import {
   renderinitialCards,
   addCard,
   popupFormCard
-} from './card'
+} from './card';
 // ------------------------
 import {
   enableValidation
-} from './validate'
+} from './validate';
 // ------------------------
 import {
   profileOpenPopupButton,
@@ -31,11 +31,10 @@ import {
 // ------------------------
 import {
   apiProfile,
-  apiCard,
-  apiProfilePatch
-} from './api'
+  apiCard
+} from './api';
 
-let userId;
+export let userId;
 // ------------------------закрытие попап
 
 const popups = document.querySelectorAll('.popup');
@@ -48,7 +47,7 @@ popups.forEach((popup) => {
       closePopup(popup)
     }
   })
-})
+});
 
 // ------------------------открытие попап
 
