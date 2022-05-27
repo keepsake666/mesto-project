@@ -13,7 +13,7 @@
 
 **Ссылка на сайт**
 
-* [Mesto](https://tinatezadova.github.io/mesto-project/)
+* [Mesto](https://keepsake666.github.io/mesto-project/)
 
 **Почтовые адреса участников парного программирования**
 * veselovsa@list.ru: https://github.com/keepsake666
