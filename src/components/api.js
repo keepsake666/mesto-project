@@ -1,101 +1,95 @@
-const config = {
-  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-9',
-  headers: {
-    authorization: 'fee29014-062b-4401-8525-ee1398a9c8ac',
-    'Content-Type': 'application/json',
-  },
-};
+export default class Api {
+  constructor({
+    baseUrl,
+    headers
+  }) {
+    this.baseUrl = baseUrl;
+    this.headers = headers;
+  }
 
-const checkResponse = res => {
-  if (res.ok) {
-    return res.json()
-  } else {
-    return Promise.reject(`Ошибка: ${res.status}`)
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+
+  getUserInfo() {
+    return fetch(`${this.baseUrl}/users/me`, {
+        headers: this.headers
+      })
+      .then(this._checkResponse)
+  }
+
+  getInitialCards() {
+    return fetch(`${this.baseUrl}/cards`, {
+        headers: this.headers
+      })
+      .then(this._checkResponse)
+  }
+
+  updateUserInfo({
+    name,
+    about
+  }) {
+    return fetch(`${this.baseUrl}/users/me`, {
+        method: 'PATCH',
+        headers: this.headers,
+        body: JSON.stringify({
+          name,
+          about
+        })
+      })
+      .then(this._checkResponse)
+  }
+
+  createNewCard({
+    name,
+    link
+  }) {
+    return fetch(`${this.baseUrl}/cards`, {
+        method: 'POST',
+        headers: this.headers,
+        body: JSON.stringify({
+          name,
+          link
+        })
+      })
+      .then(this._checkResponse)
+  }
+
+  addLike(id) {
+    return fetch(`${this.baseUrl}/cards/likes/${id}`, {
+        method: 'PUT',
+        headers: this.headers
+      })
+      .then(this._checkResponse)
+  }
+
+  removeLike(id) {
+    return fetch(`${this.baseUrl}/cards/likes/${id}`, {
+        method: 'DELETE',
+        headers: this.headers
+      })
+      .then(this._checkResponse)
+  }
+
+  updateAvatar(avatar) {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
+        method: 'PATCH',
+        headers: this.headers,
+        body: JSON.stringify({
+          avatar
+        })
+      })
+      .then(this._checkResponse)
+  }
+
+  deleteCard(id) {
+    return fetch(`${this.baseUrl}/cards/${id}`, {
+        method: 'DELETE',
+        headers: this.headers
+      })
+      .then(this._checkResponse)
   }
 }
-// ------------------------информация о профиле c api
-function apiProfile() {
-  return fetch(`${config.baseUrl}/users/me`, {
-      headers: config.headers
-    })
-    .then(checkResponse)
-    .then(console.log(config.headers))
-};
-// -----------------------карточки с api
-function apiCard() {
-  return fetch(`${config.baseUrl}/cards`, {
-      headers: config.headers
-    })
-    .then(checkResponse)
-};
-// ------------------------информация о профиле на api
-function apiProfilePatch(nameProfile, aboutProfile) {
-  return fetch(`${config.baseUrl}/users/me`, {
-      method: 'PATCH',
-      headers: config.headers,
-      body: JSON.stringify({
-        name: nameProfile.value,
-        about: aboutProfile.value
-      })
-    })
-    .then(checkResponse)
-};
-// ------------------------отправление карточки
-function apiCardPost(nameCard, urlCard) {
-  return fetch(`${config.baseUrl}/cards`, {
-      method: 'POST',
-      headers: config.headers,
-      body: JSON.stringify({
-        name: nameCard,
-        link: urlCard
-      })
-    })
-    .then(checkResponse)
-};
-// ------------------------удаление карточки
-function apiCardDelete(idCard) {
-  return fetch(`${config.baseUrl}/cards/` + idCard, {
-      method: 'DELETE',
-      headers: config.headers
-    })
-    .then(checkResponse)
-};
-// ------------------------добавить лайк
-function apiLikeCard(idLike) {
-  return fetch(`${config.baseUrl}/cards/likes/` + idLike, {
-      method: 'PUT',
-      headers: config.headers
-    })
-    .then(checkResponse)
-};
-// ------------------------удалить лайк
-function apiLikeDelete(idLike) {
-  return fetch(`${config.baseUrl}/cards/likes/` + idLike, {
-      method: 'DELETE',
-      headers: config.headers
-    })
-    .then(checkResponse)
-};
-// ------------------------аватарка отправка
-function apiAvatarRedact(urlAvatar) {
-  return fetch(`${config.baseUrl}/users/me/avatar`, {
-      method: 'PATCH',
-      headers: config.headers,
-      body: JSON.stringify({
-        avatar: urlAvatar
-      })
-    })
-    .then(checkResponse)
-};
-
-export {
-  apiProfile,
-  apiCard,
-  apiProfilePatch,
-  apiCardPost,
-  apiCardDelete,
-  apiLikeCard,
-  apiLikeDelete,
-  apiAvatarRedact,
-  checkResponse
-};

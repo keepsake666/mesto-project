@@ -1,7 +1,7 @@
 {
-  "name": "yandex.praktikum",
-  "version": "0.0.1",
-  "description": "### Обзор Проект выполнен по макету из ФИГМЫ.",
+  "name": "mesto-project",
+  "version": "1.0.0",
+  "description": "* О проекте\r * Ссылка на сайт",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
@@ -11,19 +11,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/keepsake666/mesto-project.git"
+    "url": "git+https://github.com/TinaTezadova/mesto-project.git"
   },
-  "author": "Sergey Veselov",
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/keepsake666/mesto-project/issues"
+    "url": "https://github.com/TinaTezadova/mesto-project/issues"
   },
-  "homepage": "https://github.com/keepsake666/mesto-project#readme",
+  "homepage": "https://github.com/TinaTezadova/mesto-project#readme",
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/preset-env": "^7.16.11",
-    "autoprefixer": "^10.4.4",
-    "babel-loader": "^8.2.4",
+    "autoprefixer": "^10.4.5",
+    "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
     "cssnano": "^5.1.7",
@@ -36,6 +36,6 @@
     "webpack-dev-server": "^4.8.1"
   },
   "dependencies": {
-    "core-js": "^3.22.0"
+    "core-js": "^3.22.2"
   }
 }
